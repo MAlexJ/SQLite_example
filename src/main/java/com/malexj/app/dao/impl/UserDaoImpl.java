@@ -19,6 +19,7 @@ public class UserDaoImpl implements UserDao {
 	 * SQL
 	 */
 	private final static String SQL_FIND_ALL_USERS = "SELECT userId, fullName, email, password FROM users";
+	private final static String SQL_INSERT_USER = "INSERT INTO users (fullName,email, password) VALUES (?,?,?)";
 
 	@Override
 	public List<User> findAllUsers(Connection connection) {
@@ -44,5 +45,26 @@ public class UserDaoImpl implements UserDao {
 			log.error(message);
 			throw new AppException(message);
 		}
+	}
+
+	@Override
+	public void createUser(Connection connection, User user) {
+
+		try (PreparedStatement statement = connection.prepareStatement(SQL_INSERT_USER)) {
+
+			statement.setString(1, user.getFullName());
+			statement.setString(2, user.getEmail());
+			statement.setString(3, user.getPassword());
+
+			if (statement.executeUpdate() < 1) {
+				throw new AppException("Error inserting the table 'users'");
+			}
+
+		} catch (SQLException ex) {
+			String message = ex.getMessage();
+			log.error(message);
+			throw new AppException(message);
+		}
+
 	}
 }
