@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 
 public interface CategoryDefinitionDao {
 
-    void createCategory(Connection connection, int id, String category);
+    void createCategory(Connection connection, String category);
 
-    ResultSet select(Connection connection, String query);
+    void select(Connection connection, String query);
 }
