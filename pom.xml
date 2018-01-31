@@ -51,5 +51,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <!-- fillo -->
+        <dependency>
+            <groupId>com.codoid.products</groupId>
+            <artifactId>fillo</artifactId>
+            <version>1.17</version>
+        </dependency>
     </dependencies>
 </project>
