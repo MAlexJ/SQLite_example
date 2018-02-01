@@ -31,3 +31,12 @@ http://macappstore.org/sqlitestudio/
 
 http://blog.harrix.org/article/5154
 http://sqlitebrowser.org/
+
+
+*********************
+
+Flyway
+https://flywaydb.org/getstarted/firststeps/maven
+1. mvn clean install
+2. mvn flyway:migrate
+3. mvn flyway:info

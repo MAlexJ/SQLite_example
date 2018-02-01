@@ -6,6 +6,7 @@ import com.malexj.app.datasource.impl.DataSourceImpl;
 import com.malexj.app.model.User;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.sql.Connection;
@@ -31,6 +32,7 @@ public class UserDaoImplTest {
 		ds.close(connect);
 	}
 
+    @Ignore
 	@Test
 	public void testFindAllUsers() {
 		UserDao dao = new UserDaoImpl();

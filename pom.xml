@@ -27,6 +27,24 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+             <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.0.7</version>
+                <configuration>
+                    <url>jdbc:sqlite:db/db_app.db</url>
+                    <locations>
+                        <location>classpath:/migration</location>
+                    </locations>
+                </configuration>
+                <dependencies>
+                    <dependency>
+           		 <groupId>org.xerial</groupId>
+            		 <artifactId>sqlite-jdbc</artifactId>
+            		<version>3.20.0</version>
+        	    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
 
@@ -63,6 +81,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.4</version>
+        </dependency>
+
+        <!-- flyway -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>5.0.7</version>
         </dependency>
 
         <!--junit-->

@@ -22,7 +22,7 @@ public class Controller {
         Connection connect = ds.connect();
         CategoryDefinitionDao dao = new CategoryDefinitionDaoImpl();
 
-        createTable();
+//        createTable();
 
         fillCategory(connect, dao);
 
