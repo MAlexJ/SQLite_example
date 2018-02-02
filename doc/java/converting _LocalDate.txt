@@ -1,0 +1,38 @@
+DESCRIPTION: How to persist LocalDate and LocalDateTime with JPA
+SRC: https://www.thoughts-on-java.org/persist-localdate-localdatetime-jpa/
+
+>>>>>>>>>> Converting LocalDate <<<<<<<<<<<<<<
+
+As you can see in the following code snippet, there isn’t much you need to do to create an attribute converter for LocalDate.
+
+@Converter(autoApply = true)
+public class LocalDateAttributeConverter implements AttributeConverter<LocalDate, Date> {
+	
+    @Override
+    public Date convertToDatabaseColumn(LocalDate locDate) {
+    	return (locDate == null ? null : Date.valueOf(locDate));
+    }
+
+    @Override
+    public LocalDate convertToEntityAttribute(Date sqlDate) {
+    	return (sqlDate == null ? null : sqlDate.toLocalDate());
+    }
+}
+
+
+>>>>>>>>>> Converting LocalDateTime <<<<<<<<<<<<<<
+
+The attribute converter for LocalDateTime is basically the same. You need to implement the AttributeConverter<LocalDateTime, Timestamp> interface and the converter needs to be annotated with the @Converter annotation. Similar to the LocalDateConverter, the conversion between a LocalDateTime and an java.sql.Timestamp is done with the conversion methods of Timestamp. 
+@Converter(autoApply = true)
+public class LocalDateTimeAttributeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
+	
+    @Override
+    public Timestamp convertToDatabaseColumn(LocalDateTime locDateTime) {
+    	return (locDateTime == null ? null : Timestamp.valueOf(locDateTime));
+    }
+
+    @Override
+    public LocalDateTime convertToEntityAttribute(Timestamp sqlTimestamp) {
+    	return (sqlTimestamp == null ? null : sqlTimestamp.toLocalDateTime());
+    }
+}
