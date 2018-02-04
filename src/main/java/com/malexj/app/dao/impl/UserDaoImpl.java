@@ -15,56 +15,55 @@ import java.util.List;
 @Slf4j
 public class UserDaoImpl implements UserDao {
 
-	/**
-	 * SQL
-	 */
-	private final static String SQL_FIND_ALL_USERS = "SELECT userId, fullName, email, password FROM users";
-	private final static String SQL_INSERT_USER = "INSERT INTO users (fullName,email, password) VALUES (?,?,?)";
+    /**
+     * SQL
+     */
+    private final static String SQL_FIND_ALL_USERS = "SELECT userId, fullName, email, password FROM users";
+    private final static String SQL_INSERT_USER = "INSERT INTO users (fullName,email, password) VALUES (?,?,?)";
 
-	@Override
-	public List<User> findAllUsers(Connection connection) {
+    @Override
+    public List<User> findAllUsers(Connection connection) {
 
-		try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_USERS)) {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_FIND_ALL_USERS)) {
 
-			List<User> users = new ArrayList<>();
+            List<User> users = new ArrayList<>();
 
-			ResultSet rs = statement.executeQuery();
-			while (rs.next()) {
-				User user = new User();
-				user.setUserId(rs.getInt("userId"));
-				user.setFullName(rs.getString("fullName"));
-				user.setEmail(rs.getString("email"));
-				user.setPassword(rs.getString("password"));
-				users.add(user);
-			}
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setFullName(rs.getString("fullName"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                users.add(user);
+            }
 
-			return users;
+            return users;
 
-		} catch (SQLException ex) {
-			String message = ex.getMessage();
-			log.error(message);
-			throw new AppException(message);
-		}
-	}
+        } catch (SQLException ex) {
+            String message = ex.getMessage();
+            log.error(message);
+            throw new AppException(message);
+        }
+    }
 
-	@Override
-	public void createUser(Connection connection, User user) {
+    @Override
+    public void createUser(Connection connection, User user) {
 
-		try (PreparedStatement statement = connection.prepareStatement(SQL_INSERT_USER)) {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_INSERT_USER)) {
 
-			statement.setString(1, user.getFullName());
-			statement.setString(2, user.getEmail());
-			statement.setString(3, user.getPassword());
+            statement.setString(1, user.getFullName());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getPassword());
 
-			if (statement.executeUpdate() < 1) {
-				throw new AppException("Error inserting the table 'users'");
-			}
+            if (statement.executeUpdate() < 1) {
+                throw new AppException("Error inserting the table 'users'");
+            }
 
-		} catch (SQLException ex) {
-			String message = ex.getMessage();
-			log.error(message);
-			throw new AppException(message);
-		}
+        } catch (SQLException ex) {
+            String message = ex.getMessage();
+            log.error(message);
+            throw new AppException(message);
+        }
 
-	}
+    }
 }

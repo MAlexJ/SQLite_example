@@ -1,26 +1,35 @@
 package com.malexj.app.model;
 
-import lombok.*;
+import com.malexj.app.model.base.BaseModel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.time.LocalDate;
 
-@ToString
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * TABLE: USER
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * id          INTEGER,
+ * firstName   VARCHAR(45)        NULL,
+ * lastName    VARCHAR(45)        NULL,
+ * dateOfBirth DATE               NULL,
+ * email       VARCHAR(45) UNIQUE NOT NULL,
+ * password    VARCHAR(45)        NOT NULL,
+ * avatar      BLOB               NULL
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+@Getter
+@Setter
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"userId"})
-public class User {
-
-	@Getter
-	@Setter
-	private long userId;
-
-	@Getter
-	@Setter
-	private String fullName;
-
-	@Getter
-	@Setter
-	private String email;
-
-	@Getter
-	@Setter
-	private String password;
+@EqualsAndHashCode(callSuper = false)
+public class User extends BaseModel {
+    private String fullName;
+    private String lastName;
+    private LocalDate dateOfBirth;
+    private String email;
+    private String password;
+    private byte[] avatar;
 }
