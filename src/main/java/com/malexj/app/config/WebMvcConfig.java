@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -29,6 +30,22 @@ public class WebMvcConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler(
+                "/resources/**",
+                "/webjars/**",
+                "/img/**",
+                "/css/**",
+                "/js/**")
+                .addResourceLocations(
+                        "classpath:/META-INF/resources/webjars/",
+                        "classpath:/static/img/",
+                        "classpath:/static/css/",
+                        "classpath:/static/js/");
     }
 
     @Bean

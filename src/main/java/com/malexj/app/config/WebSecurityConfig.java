@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**");
+        web.ignoring().antMatchers("/resources/**", "/webjars/**");
     }
 
     /**
@@ -57,6 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .loginPage("/login")
                 .permitAll()
+                .and()
+                .authorizeRequests().antMatchers("/login", "/resources/**").hasAnyRole("ANONYMOUS, USER")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .permitAll()

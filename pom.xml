@@ -15,64 +15,7 @@
         <spring-security-web.version>5.0.0.RELEASE</spring-security-web.version>
     </properties>
 
-    <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <outputDirectory>target</outputDirectory>
-                    <warName>ROOT</warName>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>5.0.7</version>
-                <configuration>
-                    <url>jdbc:sqlite:db/db_app.db</url>
-                    <locations>
-                        <location>classpath:/migration</location>
-                    </locations>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.xerial</groupId>
-                        <artifactId>sqlite-jdbc</artifactId>
-                        <version>3.20.0</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <path>/</path>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencies>
-
         <!-- Servlet Dependency -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -118,6 +61,18 @@
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring4</artifactId>
             <version>${thymeleaf.version}</version>
+        </dependency>
+
+        <!-- webjar bootstrap and jquery dependencies -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.2.1</version>
         </dependency>
 
         <!-- spring-security -->
@@ -194,12 +149,61 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- fillo -->
-        <dependency>
-            <groupId>com.codoid.products</groupId>
-            <artifactId>fillo</artifactId>
-            <version>1.17</version>
-        </dependency>
     </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <outputDirectory>target</outputDirectory>
+                    <warName>ROOT</warName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.0.7</version>
+                <configuration>
+                    <url>jdbc:sqlite:db/db_app.db</url>
+                    <locations>
+                        <location>classpath:/migration</location>
+                    </locations>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.xerial</groupId>
+                        <artifactId>sqlite-jdbc</artifactId>
+                        <version>3.20.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

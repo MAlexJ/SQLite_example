@@ -4,10 +4,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- JQuery -->
-    <script th:src="jquery-3.1.1.slim.min.js" src="../resources/jquery-3.1.1.slim.min.js"></script>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" th:ref="bootstrap.min.css" href="../resources/bootstrap.min.css">
+    <!-- include css in the header -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <div class="container">
@@ -59,8 +59,5 @@
         });
     });
 </script>
-<!-- jQuery first, then Tether, then Bootstrap JS. -->
-<script src="../resources/tether.min.js"></script>
-<script th:src="" src="../resources/bootstrap.min.js"></script>
 </body>
 </html>
