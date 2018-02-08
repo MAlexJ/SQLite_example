@@ -75,6 +75,32 @@
             <version>3.2.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.webjars/angularjs -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>angularjs</artifactId>
+            <version>1.6.8</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/angular-route -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-route</artifactId>
+            <version>1.6.8</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/angular-ui-router -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-ui-router</artifactId>
+            <version>1.0.14</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/angular-toastr -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular-toastr</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+
         <!-- spring-security -->
         <!-- https://www.boraji.com/spring-mvc-5-spring-security-5-hibernate-5-example -->
         <dependency>
