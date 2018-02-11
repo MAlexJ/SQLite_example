@@ -64,15 +64,22 @@
         </dependency>
 
         <!-- webjar bootstrap and jquery dependencies -->
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>4.0.0</version>
+            <version>4.0.0-alpha.6-1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/tether -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>tether</artifactId>
+            <version>1.4.3</version>
         </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
-            <version>3.2.1</version>
+            <version>3.3.1</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.webjars/angularjs -->
