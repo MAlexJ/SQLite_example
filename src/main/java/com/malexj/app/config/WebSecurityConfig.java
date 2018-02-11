@@ -41,8 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * Configure asses to wer resources
      */
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**", "/webjars/**");
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/resources/**", "/webjars/**", "/js/**", "/css/**", "/img/**");
     }
 
     /**

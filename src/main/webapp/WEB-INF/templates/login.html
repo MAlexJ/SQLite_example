@@ -1,63 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- include css in the header -->
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}"/>
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
-</head>
+<head th:replace="component/login/head.html :: head"></head>
 <body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-4">
-            <form th:action="@{/login}" method="post" class="form-signin" style="padding-top: 120px;">
-                <h2 class="form-signin-heading">Please sign in</h2>
-                <br>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="text" id="inputEmail" class="form-control" placeholder="Username" required=""
-                       name="username" autofocus="">
-                <br>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
-                       name="password">
-                <div class="checkbox" style="padding-bottom: 10px;padding-top: 20px;">
-                    <label>
-                        <input type="checkbox" value="remember-me" id="remember_me"> Remember me
-                    </label>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </form>
+            <form th:replace="component/login/form.html :: form"></form>
         </div>
     </div>
 </div>
-<script>
-    // remember me
-    $(function () {
-        if (localStorage.chkbx && localStorage.chkbx !== '') {
-            $('#remember_me').attr('checked', 'checked');
-            $('#inputEmail').val(localStorage.usrname);
-            $('#inputPassword').val(localStorage.pass);
-        } else {
-            $('#remember_me').removeAttr('checked');
-            $('#inputEmail').val('');
-            $('#inputPassword').val('');
-        }
-        $('#remember_me').click(function () {
-            if ($('#remember_me').is(':checked')) {
-                // save username and password
-                localStorage.usrname = $('#inputEmail').val();
-                localStorage.pass = $('#inputPassword').val();
-                localStorage.chkbx = $('#remember_me').val();
-            } else {
-                localStorage.usrname = '';
-                localStorage.pass = '';
-                localStorage.chkbx = '';
-            }
-        });
-    });
-</script>
+<div th:replace="component/login/footer.html :: footer"></div>
 </body>
 </html>
