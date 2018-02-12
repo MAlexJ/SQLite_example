@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error page</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<h1>404</h1>
+<!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
+<p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
+<a th:href="@{/login}">Back to Login Page</a>
+</body>
+</html>

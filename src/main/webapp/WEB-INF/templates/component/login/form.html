@@ -26,6 +26,7 @@
                    id="remember_me"> Remember me
         </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block btnSubmit" type="submit">Sign in</button>
+    <!--/*@thymesVar id="loginError" type="java.lang.String"*/-->
     <div class="errorBlock" th:if="${loginError}">Wrong user or password</div>
 </form>
