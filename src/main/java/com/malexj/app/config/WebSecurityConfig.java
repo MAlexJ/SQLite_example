@@ -53,9 +53,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests().anyRequest().authenticated();
         http
-                .formLogin().failureUrl("/login?error")
+                .formLogin()
                 .defaultSuccessUrl("/")
                 .loginPage("/login")
+                .failureUrl("/login-error")
                 .permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/login", "/resources/**").hasAnyRole("ANONYMOUS, USER")
