@@ -1,13 +1,13 @@
 'use strict';
 
-/**
- * Start page: default select the first tab
- */
-myAdmin.controller('adminLanguageController', function ($scope, $state) {
-    // go to active first link
-    $state.go('language_list');
+app.controller('ddlController', function ($scope, $http) {
+
 });
 
-myAdmin.controller('adminLanguageListController', function ($scope, $http) {
+app.controller('dmlController', function ($scope, $http) {
+
+});
+
+app.controller('tclController', function ($scope, $http) {
 
 });

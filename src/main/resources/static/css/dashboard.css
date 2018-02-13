@@ -1,25 +1,12 @@
-/*
- * Base structure
- */
-
-/* Move down content because we have a fixed navbar that is 50px tall */
 body {
     padding-top: 50px;
 }
-
-/*
- * Typography
- */
 
 h1 {
     margin-bottom: 20px;
     padding-bottom: 9px;
     border-bottom: 1px solid #eee;
 }
-
-/*
- * Sidebar
- */
 
 .sidebar {
     position: fixed;
@@ -33,7 +20,6 @@ h1 {
     border-right: 1px solid #eee;
 }
 
-/* Sidebar navigation */
 .sidebar {
     padding-left: 0;
     padding-right: 0;
@@ -55,11 +41,6 @@ h1 {
     border-radius: 0;
 }
 
-/*
- * Dashboard
- */
-
-/* Placeholders */
 .placeholders {
     padding-bottom: 3rem;
 }
@@ -71,4 +52,8 @@ h1 {
 
 .btnSignUp {
     cursor: pointer;
+}
+
+.brandDiv {
+    cursor: default;
 }

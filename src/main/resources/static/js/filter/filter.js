@@ -1,7 +1,7 @@
 'use strict';
 
 // search by name
-myAdmin.filter('customSearchFilter', function () {
+app.filter('customSearchFilter', function () {
     return function (input, term) {
         var regex = new RegExp(term || '', 'i');
         var obj = {};
@@ -14,7 +14,7 @@ myAdmin.filter('customSearchFilter', function () {
     };
 });
 
-myAdmin.filter('trustAsResourceUrl', ['$sce', function ($sce) {
+app.filter('trustAsResourceUrl', ['$sce', function ($sce) {
     return function (val) {
         return $sce.trustAsResourceUrl(val);
     };

@@ -1,6 +1,6 @@
 'use strict';
 
-myAdmin.directive('activeLink', ['$location', function (location) {
+app.directive('activeLink', ['$location', function (location) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs, controller) {
@@ -20,7 +20,7 @@ myAdmin.directive('activeLink', ['$location', function (location) {
     };
 }]);
 
-myAdmin.directive('bsActiveLink', ['$location', function ($location) {
+app.directive('bsActiveLink', ['$location', function ($location) {
     return {
         restrict: 'A', //use as attribute
         replace: false,
@@ -46,7 +46,7 @@ myAdmin.directive('bsActiveLink', ['$location', function ($location) {
 /**
  * The directive is intended for downloading 'multipart/form-data' files
  */
-myAdmin.directive('fileModel', ['$parse', function ($parse) {
+app.directive('fileModel', ['$parse', function ($parse) {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
