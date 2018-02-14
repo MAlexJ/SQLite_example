@@ -6,46 +6,39 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import static com.malexj.app.constant.Constant.*;
+
 @Slf4j
 @Controller
 public class PageViewController {
     /**
      * Index page
      */
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET, produces = "text/html")
     public String homePage() {
-        return "index.html";
+        return INDEX_HTML;
     }
 
     /**
-     * Index page
+     * any page
      */
-    @RequestMapping(value = "/{page}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{page}", method = RequestMethod.GET, produces = "text/html")
     public String page(@PathVariable("page") String page) {
-        return "index.html";
+        return INDEX_HTML;
     }
 
     /**
-     * DDL page
+     * app page
      */
-    @RequestMapping(value = "/app/ddl", method = RequestMethod.GET, produces = "text/html")
-    public String ddlPage() {
-        return "app/ddl/ddl.html";
-    }
-
-    /**
-     * DML page
-     */
-    @RequestMapping(value = "/app/dml", method = RequestMethod.GET, produces = "text/html")
-    public String dmlPage() {
-        return "app/dml/dml.html";
-    }
-
-    /**
-     * TCL page
-     */
-    @RequestMapping(value = "/app/tcl", method = RequestMethod.GET, produces = "text/html")
-    public String tclPage() {
-        return "app/tcl/tcl.html";
+    @RequestMapping(value = "/app/{category}", method = RequestMethod.GET, produces = "text/html")
+    public String applPage(@PathVariable("category") String category) {
+        switch (category) {
+            case SUB_DDL:
+            case SUB_DML:
+            case SUB_TCL:
+                return String.format(PATCH_TO_TEMPLATE, category, category);
+            default:
+                return INDEX_HTML;
+        }
     }
 }

@@ -55,6 +55,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic dispatcher = servletContext
                 .addServlet(SERVLET_NAME, new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
+        dispatcher.setAsyncSupported(true);
         dispatcher.setMultipartConfig(getMultiPartConfigElement());
         dispatcher.addMapping(MAPPING_URL);
     }
