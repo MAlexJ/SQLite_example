@@ -12,7 +12,7 @@ import static com.malexj.app.constant.Constant.*;
 @Controller
 public class PageViewController {
     /**
-     * Index page
+     * Processing of the main `index.html` page
      */
     @RequestMapping(value = {"/"}, method = RequestMethod.GET, produces = "text/html")
     public String homePage() {
@@ -20,7 +20,7 @@ public class PageViewController {
     }
 
     /**
-     * any page
+     * Processing page refresh
      */
     @RequestMapping(value = "/{page}", method = RequestMethod.GET, produces = "text/html")
     public String page(@PathVariable("page") String page) {
@@ -28,7 +28,7 @@ public class PageViewController {
     }
 
     /**
-     * app page
+     * Processing template pages
      */
     @RequestMapping(value = "/app/{category}", method = RequestMethod.GET, produces = "text/html")
     public String applPage(@PathVariable("category") String category) {

@@ -1,7 +1,10 @@
 'use strict';
 
-app.controller('ddlController', function ($scope, $http) {
-
+app.controller('ddlController', function ($scope, $http, RestAPI) {
+ RestAPI.get("dml")
+        .then(function (response) {
+                $scope.myData = response.data;
+           });
 });
 
 app.controller('dmlController', function ($scope, $http) {
