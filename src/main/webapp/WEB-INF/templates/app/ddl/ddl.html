@@ -20,29 +20,18 @@
             <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
                 <h1>Dashboard</h1>
                 <section class="row text-center placeholders">
-                    <div class="col-6 col-sm-3 placeholder">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200"
-                             height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-                        <h4>Label</h4>
-                        <div class="text-muted">Something else</div>
+                    <ul>
+                        <li ng-repeat="x in myData track by $index"> {{x.id + ', ' + x.name }}</li>
+                    </ul>
+                </section>
+                <section class="row text-center placeholders">
+                    <br>
+                    <div class="input-group" style="width: 300px;">
+                        <span class="input-group-addon" id="basic-addon1">Text:</span>
+                        <input ng-model="text" type="text" class="form-control" placeholder="Some text">
                     </div>
-                    <div class="col-6 col-sm-3 placeholder">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200"
-                             height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-                        <h4>Label</h4>
-                        <span class="text-muted">Something else</span>
-                    </div>
-                    <div class="col-6 col-sm-3 placeholder">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200"
-                             height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-                        <h4>Label</h4>
-                        <span class="text-muted">Something else</span>
-                    </div>
-                    <div class="col-6 col-sm-3 placeholder">
-                        <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200"
-                             height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-                        <h4>Label</h4>
-                        <span class="text-muted">Something else</span>
+                    <div style="padding-left: 20px;">
+                        <button ng-click="sendText()" type="button" class="btn btn-success">Send</button>
                     </div>
                 </section>
             </main>

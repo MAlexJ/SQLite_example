@@ -248,6 +248,7 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/</path>
+                        <port>8081</port>
                 </configuration>
             </plugin>
         </plugins>
