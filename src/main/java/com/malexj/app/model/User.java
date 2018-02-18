@@ -1,10 +1,7 @@
 package com.malexj.app.model;
 
 import com.malexj.app.model.base.BaseModel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -25,6 +22,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@ToString(exclude = {"avatar", "dateOfBirth", "password"})
 public class User extends BaseModel {
     private String fullName;
     private String lastName;

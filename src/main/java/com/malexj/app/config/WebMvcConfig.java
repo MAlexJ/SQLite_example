@@ -30,6 +30,11 @@ public class WebMvcConfig implements WebMvcConfigurer, ApplicationContextAware {
      */
     private static final String UTF8 = "UTF-8";
 
+    /**
+     * Path to template pages
+     */
+    private static final String TEMPLATE_PAGES = "/WEB-INF/templates/";
+
     private ApplicationContext applicationContext;
 
     @Override
@@ -74,7 +79,7 @@ public class WebMvcConfig implements WebMvcConfigurer, ApplicationContextAware {
     private ITemplateResolver templateResolver() {
         SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
         resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("/WEB-INF/templates/");
+        resolver.setPrefix(TEMPLATE_PAGES);
         resolver.setTemplateMode(TemplateMode.HTML);
         return resolver;
     }

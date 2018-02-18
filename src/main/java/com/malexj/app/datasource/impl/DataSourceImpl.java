@@ -29,7 +29,7 @@ public class DataSourceImpl implements DataSource {
         } catch (SQLException ex) {
             String message = ex.getMessage();
             log.error(message);
-            throw new AppException(message);
+            throw new AppException("Error create connection to database, error message: %s", message);
         }
     }
 
@@ -45,14 +45,14 @@ public class DataSourceImpl implements DataSource {
             } catch (SQLException e) {
                 String message = e.getMessage();
                 log.error(message);
-                throw new AppException(message);
+                throw new AppException("Error close connection to database, error message: %s", message);
             }
 
         } else {
 
             String message = "No connection to DB!";
             log.error(message);
-            throw new AppException(message);
+            throw new AppException("No connection to DB, error message: %s", message);
         }
     }
 

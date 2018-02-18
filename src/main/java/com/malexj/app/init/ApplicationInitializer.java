@@ -7,6 +7,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.annotation.Nonnull;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
@@ -18,13 +19,13 @@ public class ApplicationInitializer implements WebApplicationInitializer {
     private final static String CONFIG_LOCATION = "com.malexj.app.config";
 
     /**
-     * Servlet congig
+     * Servlet config
      */
     private final static String MAPPING_URL = "/";
     private final static String SERVLET_NAME = "DispatcherServlet";
 
     /**
-     * Security congig
+     * Security config
      */
     private final static String FILTER_NAME = "springSecurityFilterChain";
     private final static String TARGET_BEAN_NAME = "springSecurityFilterChain";
@@ -39,7 +40,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
     private final static int FILE_SIZE_THRESHOLD = 0;
 
     @Override
-    public void onStartup(ServletContext servletContext) {
+    public void onStartup(@Nonnull ServletContext servletContext) {
 
         // Create the 'root' Spring application context
         WebApplicationContext context = getContext();

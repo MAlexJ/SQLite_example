@@ -113,6 +113,13 @@
             <artifactId>angular-ui-router</artifactId>
             <version>1.0.3</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/spring-security-csrf-token-interceptor -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>spring-security-csrf-token-interceptor</artifactId>
+            <version>0.1.5</version>
+        </dependency>
+
 
         <!-- spring-security -->
         <!-- https://www.boraji.com/spring-mvc-5-spring-security-5-hibernate-5-example -->

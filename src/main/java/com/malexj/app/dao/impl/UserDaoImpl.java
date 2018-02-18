@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException ex) {
             String message = ex.getMessage();
             log.error(message);
-            throw new AppException(message);
+            throw new AppException("Error find user: %s", message);
         }
     }
 
@@ -56,13 +56,13 @@ public class UserDaoImpl implements UserDao {
             statement.setString(3, user.getPassword());
 
             if (statement.executeUpdate() < 1) {
-                throw new AppException("Error inserting the table 'users'");
+                throw new AppException("Error insert operation, user: %s", user);
             }
 
         } catch (SQLException ex) {
             String message = ex.getMessage();
             log.error(message);
-            throw new AppException(message);
+            throw new AppException("Error create a new user: %s, error message: %s", user, message);
         }
 
     }

@@ -8,13 +8,15 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * Creating The Security Configuration
  * <p>
- * Spring Security configuration
+ * Spring Security configuration:
  * https://www.boraji.com/spring-mvc-5-spring-security-5-hibernate-5-example
  * https://justinrodenbostel.com/2014/05/30/part-5-integrating-spring-security-with-spring-boot-web/
+ * https://stackoverflow.com/questions/31389120/spring-csrf-angularjs
  */
 @Configuration
 @EnableWebSecurity
@@ -64,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .permitAll()
                 .and()
-                .csrf().ignoringAntMatchers("/login", "/logout");
+                .csrf().ignoringAntMatchers("/login", "/logout")
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 }
