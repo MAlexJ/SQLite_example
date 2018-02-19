@@ -15,6 +15,13 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         controller: 'ddlController'
     };
 
+    var ddl_template = {
+        parent: 'ddl',
+        name: 'ddl_template',
+        templateUrl: base_url + '/app/template',
+        controller: 'ddlTemplateController'
+    };
+
     var dml = {
         name: 'dml',
         url: '/dml',
@@ -30,6 +37,8 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
     };
 
     $stateProvider.state(ddl);
+    $stateProvider.state(ddl_template);
+
     $stateProvider.state(dml);
     $stateProvider.state(tcl);
 

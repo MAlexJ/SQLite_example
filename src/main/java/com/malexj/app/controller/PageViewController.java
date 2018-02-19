@@ -31,11 +31,12 @@ public class PageViewController {
      * Processing template pages
      */
     @RequestMapping(value = "/app/{category}", method = RequestMethod.GET, produces = "text/html")
-    public String applPage(@PathVariable("category") String category) {
+    public String appPage(@PathVariable("category") String category) {
         switch (category) {
             case SUB_DDL:
             case SUB_DML:
             case SUB_TCL:
+            case TEMPLATE:
                 return String.format(PATCH_TO_TEMPLATE, category, category);
             default:
                 return INDEX_HTML;

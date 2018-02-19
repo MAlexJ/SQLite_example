@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
 import java.util.ResourceBundle;
 
-import static com.malexj.app.constant.Constant.ROOT_PROPERTIY_FILE;
+import static com.malexj.app.constant.Constant.ROOT_PROPERTY_FILE;
 
 @Service
 public class PropertiesReaderApp implements IPropertiesReaderApp {
@@ -17,9 +17,9 @@ public class PropertiesReaderApp implements IPropertiesReaderApp {
 
     @PostConstruct
     void initResourceBundle() {
-        resourceBundle = ResourceBundle.getBundle(ROOT_PROPERTIY_FILE);
+        resourceBundle = ResourceBundle.getBundle(ROOT_PROPERTY_FILE);
         if (resourceBundle == null) {
-            throw new AppException("Could not load any resources with name: %s", ROOT_PROPERTIY_FILE);
+            throw new AppException("Could not load any resources with name: %s", ROOT_PROPERTY_FILE);
         }
     }
 

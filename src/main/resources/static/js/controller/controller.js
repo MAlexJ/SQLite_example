@@ -1,9 +1,9 @@
 'use strict';
 
 app.controller('ddlController', function ($scope, $http, RestAPI) {
-    RestAPI.get("dml")
+    RestAPI.get("ddl")
         .then(function (response) {
-            $scope.myData = response.data;
+            $scope.subCategoryList = response.data;
         });
 
     $scope.sendText = function () {
@@ -11,6 +11,10 @@ app.controller('ddlController', function ($scope, $http, RestAPI) {
         $http.post("/app/subcategory/ddl", inData); // todo set  type >>> application/json
         $scope.text = '';
     };
+
+});
+
+app.controller('ddlTemplateController', function ($scope, $http) {
 
 });
 
