@@ -120,7 +120,6 @@
             <version>0.1.5</version>
         </dependency>
 
-
         <!-- spring-security -->
         <!-- https://www.boraji.com/spring-mvc-5-spring-security-5-hibernate-5-example -->
         <dependency>
