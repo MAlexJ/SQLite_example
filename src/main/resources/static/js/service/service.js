@@ -8,7 +8,7 @@ app.factory('RestAPI', ['$http', function ($http) {
     };
 
     Response.post = function (url, inData) {
-        return $http.post("/app/subcategory/ddl", inData);
+        return $http.post("/app/subcategory/"+url, inData);
     };
 
     // $scope.sendText = function () {

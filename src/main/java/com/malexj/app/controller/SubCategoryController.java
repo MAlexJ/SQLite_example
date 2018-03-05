@@ -31,7 +31,7 @@ public class SubCategoryController {
     }
 
     @PostMapping(value = "/app/subcategory/{subCategoryName}", consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE})
-    public void postSubCategoriesByName(@PathVariable("subCategoryName") String subCategoryName, @RequestBody JsonNode node) {
+    public String postSubCategoriesByName(@PathVariable("subCategoryName") String subCategoryName, @RequestBody JsonNode node) {
         switch (subCategoryName) {
             case SUB_DDL:
                 System.out.println(">>>>>>>>>>  subCategoryName " + subCategoryName + "  >>>>>>>>>>>  body: " + node.get("text"));
@@ -45,5 +45,6 @@ public class SubCategoryController {
             default:
                 log.error("Incorrect path: " + subCategoryName);
         }
+        return "subCategoryName: " + subCategoryName + ", node: " + node;
     }
 }

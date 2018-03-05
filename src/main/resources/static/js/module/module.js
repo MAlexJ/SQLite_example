@@ -11,7 +11,12 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         {
             name: 'ddl',
             url: '/ddl',
-            component: 'ddl'
+            component: 'ddl',
+            resolve: {
+                ddl: function (RestAPI) {
+                           return RestAPI.get('ddl');
+                       }
+                 }
         },
         {
             name: 'dml',
@@ -26,6 +31,17 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
                 tcl: function (RestAPI) {
                     return RestAPI.get('tcl');
                 }
+            }
+        },
+        {
+           name: 'subCategory',
+           parent: 'tcl',
+           url: '/{id}',
+           component: 'subCategory',
+           resolve: {
+                 subCategory: function (RestAPI, $stateParams) {
+                         return RestAPI.post('tcl', $stateParams.id);
+                 }
             }
         }
     ];
