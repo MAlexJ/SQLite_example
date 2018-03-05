@@ -11,10 +11,5 @@ app.factory('RestAPI', ['$http', function ($http) {
         return $http.post("/app/subcategory/"+url, inData);
     };
 
-    // $scope.sendText = function () {
-    //     var inData = {'text': $scope.text};
-    //     $http.post("/app/subcategory/ddl", inData); // todo set  type >>> application/json
-    //     $scope.text = '';
-    // };
     return Response;
 }]);

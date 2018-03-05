@@ -3,7 +3,6 @@
 let app = angular.module('app', ['ui.router']);
 
 app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
-
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
 
@@ -19,10 +18,32 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
                  }
         },
         {
+              name: 'ddlSubCategory',
+              parent: 'ddl',
+              url: '{id}',
+              component: 'ddlSubCategory',
+              resolve: {
+                   ddlSubCategory: function (RestAPI, $stateParams) {
+                           return RestAPI.post('ddl', $stateParams.id);
+                       }
+               }
+         },
+        {
             name: 'dml',
             url: '/dml',
             component: 'dml'
         },
+        {
+            name: 'dmlSubCategory',
+            parent: 'dml',
+           url: '{id}',
+           component: 'dmlSubCategory',
+           resolve: {
+                     dmlSubCategory: function (RestAPI, $stateParams) {
+                               return RestAPI.post('dml', $stateParams.id);
+                      }
+            }
+         },
         {
             name: 'tcl',
             url: '/tcl',
@@ -34,16 +55,16 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         },
         {
-           name: 'subCategory',
-           parent: 'tcl',
-           url: '/{id}',
-           component: 'subCategory',
-           resolve: {
-                 subCategory: function (RestAPI, $stateParams) {
-                         return RestAPI.post('tcl', $stateParams.id);
-                 }
-            }
-        }
+              name: 'tclSubCategory',
+              parent: 'tcl',
+              url: '{id}',
+              component: 'tclSubCategory',
+              resolve: {
+                   tclSubCategory: function (RestAPI, $stateParams) {
+                           return RestAPI.post('tcl', $stateParams.id);
+                       }
+               }
+         }
     ];
 
     states.forEach(function(state) {

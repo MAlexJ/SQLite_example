@@ -26,12 +26,4 @@ public class PageViewController {
     public String page(@PathVariable("page") String page) {
         return INDEX_HTML;
     }
-
-    /**
-     * Processing page refresh
-     */
-    @RequestMapping(value = "/{page}/{id}", method = RequestMethod.GET, produces = "text/html")
-    public String page(@PathVariable("page") String page, @PathVariable(value = "id", required = false) String id) {
-        return INDEX_HTML;
-    }
 }

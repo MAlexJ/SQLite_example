@@ -8,9 +8,9 @@ app.component('tcl', {
                 <div class="row">
                     <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
                         <ul class="nav nav-pills flex-column">
-                             <li class="nav-item" ng-repeat="subCategory in  $ctrl.tcl.data track by $index">
-                                <a class="nav-link" ui-sref-active="active" ui-sref="subCategory({ id: subCategory.id })">
-                                        {{subCategory.name}}
+                             <li class="nav-item" ng-repeat="tclSubCategory in  $ctrl.tcl.data track by $index">
+                                <a class="nav-link" ui-sref-active="active" ui-sref="tclSubCategory({ id: tclSubCategory.id })">
+                                        {{tclSubCategory.name}}
                                  </a>
                              </li>
                         </ul>
