@@ -13,6 +13,7 @@
         <spring.version>5.0.2.RELEASE</spring.version>
         <thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
         <spring-security-web.version>5.0.0.RELEASE</spring-security-web.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -140,13 +141,6 @@
             <version>${spring-security-web.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>5.0.2.RELEASE</version>
-        </dependency>
-
         <!-- SQLite-jdbc -->
         <dependency>
             <groupId>org.xerial</groupId>
@@ -261,7 +255,7 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/</path>
-                        <port>8081</port>
+                    <port>8081</port>
                 </configuration>
             </plugin>
         </plugins>
