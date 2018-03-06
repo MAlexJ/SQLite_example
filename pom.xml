@@ -236,7 +236,8 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.0.7</version>
                 <configuration>
-                    <url>jdbc:sqlite:db/db_app.db</url>
+                    <url>jdbc:sqlite::resource:db/db_app.db</url>
+                    <!--<url>jdbc:sqlite:db/db_app.db</url>-->
                     <locations>
                         <location>classpath:/migration</location>
                     </locations>
