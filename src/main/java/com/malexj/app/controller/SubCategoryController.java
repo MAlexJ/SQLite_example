@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import com.malexj.app.dto.SubCategoryDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +16,9 @@ import static com.malexj.app.constant.Constant.*;
 @Slf4j
 @RestController
 public class SubCategoryController {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @GetMapping(value = "/app/subcategory/{subCategoryName}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public List<SubCategoryDTO> getSubCategoriesByName(@PathVariable("subCategoryName") String subCategoryName) {
@@ -45,6 +50,12 @@ public class SubCategoryController {
             default:
                 log.error("Incorrect path: " + subCategoryName);
         }
+
+        System.out.println();
+        int rowCount = jdbcTemplate.queryForObject("select count(*) from categoryTable", Integer.class);
+        System.out.println("<<<<<<<<<<<<<< rowCount: "+ rowCount);
+        System.out.println();
+        
         return "subCategoryName: " + subCategoryName + ", node: " + node;
     }
 }

@@ -13,21 +13,21 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             component: 'ddl',
             resolve: {
                 ddl: function (RestAPI) {
-                           return RestAPI.get('ddl');
-                       }
-                 }
+                    return RestAPI.get('ddl');
+                }
+            }
         },
         {
-              name: 'ddlSubCategory',
-              parent: 'ddl',
-              url: '{id}',
-              component: 'ddlSubCategory',
-              resolve: {
-                   ddlSubCategory: function (RestAPI, $stateParams) {
-                           return RestAPI.post('ddl', $stateParams.id);
-                       }
-               }
-         },
+            name: 'ddlSubCategory',
+            parent: 'ddl',
+            url: '{id}',
+            component: 'ddlSubCategory',
+            resolve: {
+                ddlSubCategory: function (RestAPI, $stateParams) {
+                    return RestAPI.post('ddl', $stateParams.id);
+                }
+            }
+        },
         {
             name: 'dml',
             url: '/dml',
@@ -36,14 +36,14 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         {
             name: 'dmlSubCategory',
             parent: 'dml',
-           url: '{id}',
-           component: 'dmlSubCategory',
-           resolve: {
-                     dmlSubCategory: function (RestAPI, $stateParams) {
-                               return RestAPI.post('dml', $stateParams.id);
-                      }
+            url: '{id}',
+            component: 'dmlSubCategory',
+            resolve: {
+                dmlSubCategory: function (RestAPI, $stateParams) {
+                    return RestAPI.post('dml', $stateParams.id);
+                }
             }
-         },
+        },
         {
             name: 'tcl',
             url: '/tcl',
@@ -55,19 +55,19 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         },
         {
-              name: 'tclSubCategory',
-              parent: 'tcl',
-              url: '{id}',
-              component: 'tclSubCategory',
-              resolve: {
-                   tclSubCategory: function (RestAPI, $stateParams) {
-                           return RestAPI.post('tcl', $stateParams.id);
-                       }
-               }
-         }
+            name: 'tclSubCategory',
+            parent: 'tcl',
+            url: '{id}',
+            component: 'tclSubCategory',
+            resolve: {
+                tclSubCategory: function (RestAPI, $stateParams) {
+                    return RestAPI.post('tcl', $stateParams.id);
+                }
+            }
+        }
     ];
 
-    states.forEach(function(state) {
+    states.forEach(function (state) {
         $stateProvider.state(state);
     });
 
