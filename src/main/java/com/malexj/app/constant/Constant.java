@@ -11,6 +11,7 @@ public class Constant {
      */
     public final static String SUB_DDL = "ddl";
     public final static String SUB_DML = "dml";
+    public final static String SUB_DCL = "dcl";
     public final static String SUB_TCL = "tcl";
 
     /**

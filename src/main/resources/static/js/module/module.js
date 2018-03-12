@@ -45,6 +45,27 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         },
         {
+            name: 'dcl',
+            url: '/dcl',
+            component: 'dcl',
+            resolve: {
+                dcl: function (RestAPI) {
+                    return RestAPI.get('dcl');
+                }
+            }
+        },
+        {
+            name: 'dclSubCategory',
+            parent: 'dcl',
+            url: '{id}',
+            component: 'dclSubCategory',
+            resolve: {
+                dclSubCategory: function (RestAPI, $stateParams) {
+                    return RestAPI.post('dcl', $stateParams.id);
+                }
+            }
+        },
+        {
             name: 'tcl',
             url: '/tcl',
             component: 'tcl',
@@ -64,6 +85,11 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
                     return RestAPI.post('tcl', $stateParams.id);
                 }
             }
+        },
+        {
+            name: 'query',
+            url: '/query',
+            component: 'query'
         }
     ];
 
