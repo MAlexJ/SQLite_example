@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -69,7 +70,7 @@ public class SubCategoryController
 
         System.out.println();
         int rowCount = jdbcTemplate.queryForObject("SELECT count(*) FROM categoryTable", Integer.class);
-        System.out.println("<<<<<<<<<<<<<< rowCount: " + rowCount);
+        System.out.println("<<<<<<<<<<<<<< rowCount: " + rowCount + ", time: "+ LocalDateTime.now());
         System.out.println();
 
       return () -> "subCategoryName: " + subCategoryName + ", node: " + node;
