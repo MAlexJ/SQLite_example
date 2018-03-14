@@ -87,9 +87,9 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             }
         },
         {
-            name: 'query',
-            url: '/query',
-            component: 'query'
+            name: 'console',
+            url: '/console',
+            component: 'console'
         }
     ];
 
