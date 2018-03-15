@@ -4,13 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import com.malexj.app.dto.PageDTO;
 import com.malexj.app.dto.SubCategoryDTO;
+import com.malexj.app.repository.SubCategoryDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -20,14 +19,14 @@ import static com.malexj.app.constant.Constant.*;
 @RestController
 public class SubCategoryController
 {
-
-    private final JdbcTemplate jdbcTemplate;
+    private final SubCategoryDao subCategory;
 
     @Autowired
-    public SubCategoryController(JdbcTemplate jdbcTemplate)
+    public SubCategoryController(SubCategoryDao subCategory)
     {
-        this.jdbcTemplate = jdbcTemplate;
+        this.subCategory = subCategory;
     }
+
 
     @GetMapping(value = "/app/subcategory/{subCategoryName}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public Callable<PageDTO> getSubCategoriesByName(@PathVariable("subCategoryName") String subCategoryName)
@@ -88,10 +87,9 @@ public class SubCategoryController
                 log.error("Incorrect path: " + subCategoryName);
         }
 
-//        System.out.println();
-//        int rowCount = jdbcTemplate.queryForObject("SELECT count(*) FROM categoryTable", Integer.class);
-//        System.out.println("<<<<<<<<<<<<<< rowCount: " + rowCount + ", time: " + LocalDateTime.now());
-//        System.out.println();
+        System.out.println(">>>>>>>>>>>>>>>>>");
+        System.out.println(subCategory.getAll());
+        System.out.println(">>>>>>>>>>>>>>>>>");
 
         return () -> "subCategoryName: " + subCategoryName + ", node: " + node;
     }
