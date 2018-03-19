@@ -7,11 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Repository
-public class SubCategoryDaoImp implements SubCategoryDao {
+public class SubCategoryDaoImp implements SubCategoryDao
+{
     /**
      * DataSource
      */
@@ -20,43 +18,26 @@ public class SubCategoryDaoImp implements SubCategoryDao {
     /**
      * QUERY:
      */
-    private final static String SELECT_SUB_CATEGORY_TABLE = "SELECT idSubCategory, nameSubCategory, descriptionSubCategory, htmlSubCategory, idCategory FROM subCategoryTable";
-    private final static String SELECT_SUB_CATEGORY = "SELECT sub.idSubCategory, sub.nameSubCategory, sub.htmlSubCategory, cat.htmlCategory " +
+    private final static String SELECT_SUB_CATEGORY = "SELECT sub.idSubCategory, sub.nameSubCategory, sub.htmlSubCategory " +
             "FROM subCategoryTable AS sub " +
             "LEFT JOIN categoryTable AS cat ON sub.idCategory = cat.idCategory " +
-            "WHERE cat.nameCategory = 'ddl'";
+            "WHERE cat.nameCategory = ? AND sub.idSubCategory = ?";
 
     @Autowired
-    public SubCategoryDaoImp(JdbcTemplate jdbcTemplate) {
+    public SubCategoryDaoImp(JdbcTemplate jdbcTemplate)
+    {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
-    public BuilderDTO getAll() {
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(SELECT_SUB_CATEGORY_TABLE);
-
-        List<BuilderDTO> list = new ArrayList<>();
-        String html = "<h1>HTML</h1>";
-
-        while (sqlRowSet.next()) {
-            list.add(BuilderDTO.builder()
-                    .idSubCategory(sqlRowSet.getInt("idSubCategory"))
-                    .nameSubCategory(sqlRowSet.getString("nameSubCategory"))
-                    .descriptionSubCategory(sqlRowSet.getString("descriptionSubCategory"))
-                    .htmlSubCategory(sqlRowSet.getString("htmlSubCategory"))
-                    .idCategory(sqlRowSet.getInt("idCategory"))
-                    .build());
-        }
-
-        return BuilderDTO.builder()
-                .html(html)
-                .subCategories(list)
-                .build();
-    }
-
     @Override
-    public BuilderDTO getListSubCategoriesByCategoryName(String subDdl) {
-
-        return null;
+    public BuilderDTO getListSubCategoriesByCategoryName(String subDdl, Integer idCategory)
+    {
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(SELECT_SUB_CATEGORY, subDdl, idCategory);
+        sqlRowSet.next();
+        return BuilderDTO.builder()
+                .idSubCategory(sqlRowSet.getInt("idSubCategory"))
+                .nameSubCategory(sqlRowSet.getString("nameSubCategory"))
+                .htmlSubCategory(sqlRowSet.getString("htmlSubCategory"))
+                .build();
     }
 }

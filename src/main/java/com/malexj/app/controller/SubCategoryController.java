@@ -1,6 +1,5 @@
 package com.malexj.app.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import com.malexj.app.dto.BuilderDTO;
 import com.malexj.app.dto.PageDTO;
@@ -9,7 +8,10 @@ import com.malexj.app.repository.SubCategoryDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -18,21 +20,25 @@ import static com.malexj.app.constant.Constant.*;
 
 @Slf4j
 @RestController
-public class SubCategoryController {
+public class SubCategoryController
+{
     private final SubCategoryDao subCategory;
 
     @Autowired
-    public SubCategoryController(SubCategoryDao subCategory) {
+    public SubCategoryController(SubCategoryDao subCategory)
+    {
         this.subCategory = subCategory;
     }
 
 
     @GetMapping(value = "/app/subcategory/{subCategoryName}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
-    public Callable<PageDTO> getSubCategoriesByName(@PathVariable("subCategoryName") String subCategoryName) {
+    public Callable<PageDTO> getSubCategoriesByName(@PathVariable("subCategoryName") String subCategoryName)
+    {
         List<SubCategoryDTO> subCategories;
         String html;
 
-        switch (subCategoryName) {
+        switch (subCategoryName)
+        {
             case SUB_DDL:
                 subCategories = Lists.newArrayList(new SubCategoryDTO(1, "SQL Into"), new SubCategoryDTO(2, "SQL Syntax"));
                 html = "<h1>Text</h1>" +
@@ -64,24 +70,8 @@ public class SubCategoryController {
     }
 
     @PostMapping(value = "/app/subcategory/{subCategoryName}", consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE})
-    public Callable<BuilderDTO> postSubCategoriesByName(@PathVariable("subCategoryName") String subCategoryName, @RequestBody JsonNode node) {
-        switch (subCategoryName) {
-            case SUB_DDL:
-                System.out.println(">>>>>>>>>>  subCategoryName " + subCategoryName + "  >>>>>>>>>>>  body: " + node.get("text"));
-                break;
-            case SUB_DML:
-                System.out.println(">>>>>>>>>>  subCategoryName " + subCategoryName + "  >>>>>>>>>>>  body: " + node.get("text"));
-                break;
-            case SUB_DCL:
-                System.out.println(">>>>>>>>>>  subCategoryName " + subCategoryName + "  >>>>>>>>>>>  body: " + node.get("text"));
-                break;
-            case SUB_TCL:
-                System.out.println(">>>>>>>>>>  subCategoryName " + subCategoryName + "  >>>>>>>>>>>  body: " + node.get("text"));
-                break;
-            default:
-                log.error("Incorrect path: " + subCategoryName);
-        }
-
-        return () -> subCategory.getListSubCategoriesByCategoryName(SUB_DDL);
+    public Callable<BuilderDTO> postSubCategoriesByName(@PathVariable("subCategoryName") String subCategoryName)
+    {
+        return () -> subCategory.getListSubCategoriesByCategoryName(subCategoryName, 9);
     }
 }
