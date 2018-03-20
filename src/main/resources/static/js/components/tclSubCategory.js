@@ -3,7 +3,5 @@
 app.component('tclSubCategory', {
  bindings: {tclSubCategory: '<'},
  template:
- `
- <h3>tclSubCategory:  {{$ctrl.tclSubCategory.data}} </h3>
- `
+ `<div ng-bind-html="$ctrl.tclSubCategory.data.htmlSubCategory"></div>`
 });

@@ -3,7 +3,5 @@
 app.component('dmlSubCategory', {
  bindings: {dmlSubCategory: '<'},
  template:
-  `
- <h3>dmlSubCategory:  {{$ctrl.dmlSubCategory.data}} </h3>
- `
+  `<div ng-bind-html="$ctrl.dmlSubCategory.data.htmlSubCategory"></div>`
 });

@@ -24,7 +24,8 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             component: 'ddlSubCategory',
             resolve: {
                 ddlSubCategory: function (RestAPI, $stateParams) {
-                    return RestAPI.post('ddl', $stateParams.id);
+                    let id = {'idSubCategory':$stateParams.id};
+                    return RestAPI.post('ddl', id);
                 }
             }
         },
@@ -40,7 +41,8 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             component: 'dmlSubCategory',
             resolve: {
                 dmlSubCategory: function (RestAPI, $stateParams) {
-                    return RestAPI.post('dml', $stateParams.id);
+                    let id = {'idSubCategory':$stateParams.id};
+                    return RestAPI.post('dml', id);
                 }
             }
         },
@@ -61,7 +63,8 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             component: 'dclSubCategory',
             resolve: {
                 dclSubCategory: function (RestAPI, $stateParams) {
-                    return RestAPI.post('dcl', $stateParams.id);
+                    let id = {'idSubCategory':$stateParams.id};
+                    return RestAPI.post('dcl', id);
                 }
             }
         },
@@ -82,7 +85,8 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             component: 'tclSubCategory',
             resolve: {
                 tclSubCategory: function (RestAPI, $stateParams) {
-                    return RestAPI.post('tcl', $stateParams.id);
+                    let id = {'idSubCategory':$stateParams.id};
+                    return RestAPI.post('tcl', id);
                 }
             }
         },

@@ -3,7 +3,5 @@
 app.component('ddlSubCategory', {
  bindings: {ddlSubCategory: '<'},
  template:
- `
- <h3>ddlSubCategory:  {{$ctrl.ddlSubCategory.data}} </h3>
- `
+ `<div ng-bind-html="$ctrl.ddlSubCategory.data.htmlSubCategory"></div>`
 });

@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS categoryTable (
 CREATE TABLE IF NOT EXISTS subCategoryTable (
   idSubCategory          INTEGER,
   nameSubCategory        VARCHAR(45) NOT NULL,
-  descriptionSubCategory VARCHAR(45) NULL,
   htmlSubCategory        TEXT        NULL,
   idCategory             INTEGER,
   PRIMARY KEY (idSubCategory),
