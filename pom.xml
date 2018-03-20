@@ -265,7 +265,8 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/</path>
-                    <port>8081</port>
+                    <port>80</port>
+                    <address>127.0.0.1</address>
                 </configuration>
             </plugin>
         </plugins>
