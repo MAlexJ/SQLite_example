@@ -32,7 +32,12 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         {
             name: 'dml',
             url: '/dml',
-            component: 'dml'
+            component: 'dml',
+            resolve: {
+                dml: function (RestAPI) {
+                    return RestAPI.get('dml');
+                }
+            }
         },
         {
             name: 'dmlSubCategory',
