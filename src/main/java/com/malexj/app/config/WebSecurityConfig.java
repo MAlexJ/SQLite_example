@@ -20,10 +20,12 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
  */
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter
+{
 
     @Bean
-    BCryptPasswordEncoder passwordEncoder() {
+    BCryptPasswordEncoder passwordEncoder()
+    {
         return new BCryptPasswordEncoder();
     }
 
@@ -31,7 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * Configure user data
      */
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception
+    {
         BCryptPasswordEncoder encoder = passwordEncoder();
         auth
                 .inMemoryAuthentication()
@@ -44,7 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * Configure asses to wer resources
      */
     @Override
-    public void configure(WebSecurity web) {
+    public void configure(WebSecurity web)
+    {
         web.ignoring().antMatchers("/resources/**", "/webjars/**", "/static/**", "/js/**", "/css/**", "/img/**");
     }
 
@@ -52,7 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * Configuration spring security
      */
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception
+    {
         http
                 .authorizeRequests().anyRequest().authenticated();
         http
@@ -62,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login-error")
                 .permitAll()
                 .and()
-                .authorizeRequests().antMatchers("/login", "/resources/**").hasAnyRole("ANONYMOUS, USER")
+                .authorizeRequests().antMatchers("/", "/login", "/resources/**").hasAnyAuthority("ROLE_ANONYMOUS")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .permitAll()
