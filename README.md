@@ -16,3 +16,9 @@ Path to th documentation:
 /documentation/swagger-ui.html
 
 Note: Documentation is available only after authorization of the user
+
+*********************
+# MVN profiles
+
+1. dev  : default
+2. prod : mvn clean install -P prod

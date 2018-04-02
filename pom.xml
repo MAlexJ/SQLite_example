@@ -234,6 +234,25 @@
         </resources>
         <plugins>
             <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="ENV: ${app.env}"/>
+                                <echo message="URL: ${url.address}"/>
+                                <echo message="PORT: ${url.port}"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.2</version>
@@ -279,10 +298,32 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/</path>
-                    <port>80</port>
-                    <address>127.0.0.1</address>
+                    <port>${url.port}</port>
+                    <address>${url.address}</address>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <app.env>dev</app.env>
+                <url.address>127.0.0.1</url.address>
+                <url.port>80</url.port>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <app.env>prod</app.env>
+                <url.address/>
+                <url.port>80</url.port>
+            </properties>
+        </profile>
+    </profiles>
 </project>
