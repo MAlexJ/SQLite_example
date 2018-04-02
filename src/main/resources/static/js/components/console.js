@@ -2,6 +2,13 @@
 
 app.component('console', {
     bindings: {console: '<'},
+    controller: function () {
+        this.greeting = 'hello';
+
+        this.toggle = function () {
+            this.greeting = (this.greeting === 'hello') ? 'whats up' : 'hello'
+        }
+    },
     template:
         `<div class="container">
     <div class="row justify-content-md-center" style="padding-top: 40px;">
@@ -12,13 +19,13 @@ app.component('console', {
                         <h4>SQL Statement:</h4>
                     </div>
                     <div class="col-lg-12">
-                        <textarea style="width: 100%" rows="5" id="comment"></textarea>
+                        <textarea ng-model="$ctrl.greeting" style="width: 100%" rows="5" id="comment"></textarea>
                     </div>
                     <div class="col-lg-12" style="padding-top: 15px;">
                         <p>Edit the SQL Statement, and click "Run SQL" to see the result.</p>
                     </div>
                     <div class="col-lg-12">
-                        <button type="button" class="btn btn-success">Run SQL</button>
+                        <button ng-click="$ctrl.toggle()" type="button" class="btn btn-success">Run SQL</button>
                     </div>
                 </div>
                 <div class="col-lg-12">
