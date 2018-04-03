@@ -313,9 +313,6 @@
                 <url.address>127.0.0.1</url.address>
                 <url.port>80</url.port>
             </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
         <profile>
             <id>prod</id>
@@ -324,6 +321,9 @@
                 <url.address/>
                 <url.port>80</url.port>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
     </profiles>
 </project>
