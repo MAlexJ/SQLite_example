@@ -1,5 +1,5 @@
 FROM sgrio/java-oracle
-MAINTAINER Alex Maximov(alexmaximovj@gmail.com)
+MAINTAINER Alex  Maksymov  (alexmaximovj@gmail.com)
 RUN apt-get update
 RUN apt-get install -y maven
 RUN apt-get install -y git
