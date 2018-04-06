@@ -12,7 +12,12 @@ import java.util.List;
 @Builder
 @Getter
 @ToString
-public class BuilderDTO {
+public class BuilderDTO
+{
+    // response
+    private String message;
+    boolean isError;
+
     // default
     private String html;
 
@@ -30,9 +35,12 @@ public class BuilderDTO {
 
     private List<BuilderDTO> subCategories;
 
-    public static class BuilderDTOBuilder {
-        BuilderDTOBuilder addSubCategory(BuilderDTO dto) {
-            if (subCategories == null) {
+    public static class BuilderDTOBuilder
+    {
+        BuilderDTOBuilder addSubCategory(BuilderDTO dto)
+        {
+            if (subCategories == null)
+            {
                 subCategories = new ArrayList<>();
             }
             subCategories.add(dto);

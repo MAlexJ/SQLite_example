@@ -99,6 +99,11 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
             name: 'console',
             url: '/console',
             component: 'console'
+        } ,
+       {
+            name: 'info',
+            url: '/info',
+            component: 'info'
         }
     ];
 
