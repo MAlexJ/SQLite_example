@@ -22,3 +22,10 @@ Note: Documentation is available only after authorization of the user
 
 1. dev  : default
 2. prod : mvn clean install -P prod
+
+*********************
+# Docker
+
+ RUN Local
+1. docker build -t sqlite_image:latest .
+2. docker run -it -p 80:80 sqlite_image

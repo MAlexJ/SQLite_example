@@ -4,3 +4,4 @@ target
 *.db
 *.yml
 db
+*.log
