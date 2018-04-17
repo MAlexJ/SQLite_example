@@ -302,7 +302,7 @@
             <properties>
                 <app.env>prod</app.env>
                 <url.address/>
-                <url.port>80</url.port>
+                <url.port>8080</url.port>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>

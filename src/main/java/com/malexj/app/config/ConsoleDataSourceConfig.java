@@ -2,42 +2,32 @@ package com.malexj.app.config;
 
 import com.malexj.app.service.IPropertiesReaderApp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = {"com.malexj"})
-public class DataSourceConfig
+public class ConsoleDataSourceConfig
 {
     private final IPropertiesReaderApp reader;
 
     @Autowired
-    public DataSourceConfig(IPropertiesReaderApp propertiesReaderApp)
+    public ConsoleDataSourceConfig(IPropertiesReaderApp propertiesReaderApp)
     {
         this.reader = propertiesReaderApp;
     }
 
-    @Primary
-    @Bean(name = "jdbcTemplate")
-    public JdbcTemplate getJdbcTemplate(@Qualifier("dataSource") DataSource dataSource)
-    {
-        return new JdbcTemplate(dataSource);
-    }
-
-    @Primary
-    @Bean(name = "dataSource")
+    @Bean(name = "dataSourceConsole")
     public DataSource jdbcDataSource()
     {
         SingleConnectionDataSource ds = new SingleConnectionDataSource();
-        ds.setDriverClassName(reader.getProperty("app.driver.class.name"));
-        ds.setUrl(reader.getProperty("app.url.database"));
+        ds.setSuppressClose(true);
+        ds.setDriverClassName(reader.getProperty("console.driver.class.name"));
+        ds.setUrl(reader.getProperty("console.url.database"));
         return ds;
     }
 }
