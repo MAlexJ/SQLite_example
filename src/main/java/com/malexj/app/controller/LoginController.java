@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Registering the Login Action
  */
+@Api(value = "/login", description = "Show login page")
 @Slf4j
 @Controller
-@Api(value = "/login", description = "Show login page")
 public class LoginController
 {
     /**

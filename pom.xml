@@ -294,7 +294,7 @@
             <properties>
                 <app.env>dev</app.env>
                 <url.address>127.0.0.1</url.address>
-                <url.port>80</url.port>
+                <url.port>8080</url.port>
             </properties>
         </profile>
         <profile>

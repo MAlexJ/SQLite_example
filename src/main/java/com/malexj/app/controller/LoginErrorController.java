@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Registering the Login Action
  */
+@Api(value = "/login-error", description = "Show login page with error message")
 @Slf4j
 @Controller
-@Api(value = "/login-error", description = "Show login page with error message")
 public class LoginErrorController
 {
     /**

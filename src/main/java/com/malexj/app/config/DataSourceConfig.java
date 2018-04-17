@@ -23,9 +23,9 @@ public class DataSourceConfig
     }
 
     @Bean
-    public JdbcTemplate getJdbcTemplate()
+    public JdbcTemplate getJdbcTemplate(DataSource dataSource)
     {
-        return new JdbcTemplate(jdbcDataSource());
+        return new JdbcTemplate(dataSource);
     }
 
     @Bean
