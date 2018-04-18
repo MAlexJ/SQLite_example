@@ -1,10 +1,13 @@
 package com.malexj.app.repository.impl;
 
 import com.malexj.app.dto.BuilderDTO;
+import com.malexj.app.exception.AppException;
 import com.malexj.app.repository.ConsoleDao;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -14,9 +17,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+@Slf4j
 @Repository
 public class ConsoleDaoImpl implements ConsoleDao
 {
@@ -40,6 +47,7 @@ public class ConsoleDaoImpl implements ConsoleDao
             return getResultFromSelectQuery(resultSet);
         } catch (SQLException ex)
         {
+            log.error("Error executing query.", ex);
             return BuilderDTO.builder()
                     .isError(true)
                     .message(ex.getMessage())
@@ -47,41 +55,64 @@ public class ConsoleDaoImpl implements ConsoleDao
         }
     }
 
+    @Override
+    @SneakyThrows
+    public BuilderDTO executeUpdate(String query)
+    {
+        dataSource.getConnection().createStatement().execute(query);
+        return BuilderDTO.builder().build();
+    }
+
     private BuilderDTO getResultFromSelectQuery(ResultSet resultSet) throws SQLException
     {
+        // #1 get MetaData from ResultSet
         ResultSetMetaData metaData = resultSet.getMetaData();
-        Set<ResultObj> meta = new HashSet<>();
-        for (int i = 1; i <= metaData.getColumnCount(); i++)
-        {
-            String columnName = metaData.getColumnName(i);
-            String columnType = metaData.getColumnTypeName(i);
-            ResultObj resultObj = new ResultObj(i, columnName, columnType);
-            meta.add(resultObj);
-        }
+        LinkedHashSet<ResultMetaData> resultMetaDataSet = IntStream.range(1, metaData.getColumnCount())
+                .boxed()
+                .map(countNumber -> getColumnTypeName(countNumber, metaData))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        // #2 get columnNames from MetaData
+        LinkedHashSet<String> columnNameSet = resultMetaDataSet.stream()
+                .map(ResultMetaData::getColumnName)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        // #3 get data from ResultSet by columnNames
+        List<List<Object>> resultSetRow = new ArrayList<>();
         while (resultSet.next())
         {
-            for (ResultObj resultObj : meta)
+            List<Object> rows = new ArrayList<>();
+            for (ResultMetaData resultMetaData : resultMetaDataSet)
             {
-                System.out.print("Result: " + resultSet.getObject(resultObj.getId()));
+                rows.add(resultSet.getObject(resultMetaData.getId()));
             }
-            System.out.println();
+            resultSetRow.add(rows);
         }
-        return null;
+
+        return BuilderDTO.builder()
+                .resultMetaData(columnNameSet)
+                .resultRows(resultSetRow)
+                .build();
+    }
+
+    private ResultMetaData getColumnTypeName(int countNumber, ResultSetMetaData metaData)
+    {
+        try
+        {
+            return new ResultMetaData(countNumber, metaData.getColumnName(countNumber));
+        } catch (SQLException ex)
+        {
+            log.error("Error parsing ResultSetMetaData from ResultSet.", ex);
+            throw new AppException(ex.getMessage(), "countNumber: ", countNumber);
+        }
     }
 
     @Getter
     @AllArgsConstructor
     @EqualsAndHashCode
-    private static class ResultObj
+    private static class ResultMetaData
     {
         private int id;
         private String columnName;
-        private String columnType;
-    }
-
-    @Override
-    public BuilderDTO executeUpdate(String query)
-    {
-        return null;
     }
 }

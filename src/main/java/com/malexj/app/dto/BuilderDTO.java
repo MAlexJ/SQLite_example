@@ -1,10 +1,11 @@
 package com.malexj.app.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder
@@ -33,11 +34,15 @@ public class BuilderDTO
 
     private List<BuilderDTO> subCategories;
 
+    // RowSet
+    private Set<String> resultMetaData;
+    private List<List<Object>> resultRows;
+
     public static class BuilderDTOBuilder
     {
         BuilderDTOBuilder addSubCategory(BuilderDTO dto)
         {
-            if (subCategories == null)
+            if (Objects.isNull(subCategories))
             {
                 subCategories = new ArrayList<>();
             }

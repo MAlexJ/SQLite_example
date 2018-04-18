@@ -26,7 +26,7 @@ public class ConsoleServiceImpl implements ConsoleService
             return consoleDao.executeSelect(query);
         }
 
-        if (query.startsWith("INSERT") || query.startsWith("UPDATE") || query.startsWith("DELETE"))
+        if (query.startsWith("INSERT") || query.startsWith("UPDATE") || query.startsWith("DELETE") || query.startsWith("CREATE"))
         {
             return consoleDao.executeUpdate(query);
         }

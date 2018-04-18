@@ -5,3 +5,4 @@ target
 *.yml
 db
 *.log
+db/db_console.db
