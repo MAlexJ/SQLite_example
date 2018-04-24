@@ -25,7 +25,7 @@ public class ConsoleServiceImpl implements ConsoleService
     public BuilderDTO executeQuery(@NonNull String query)
     {
         String trimQuery = query.trim();
-        if (query.trim().endsWith(";"))
+        if (!query.trim().endsWith(";"))
         {
             return BuilderDTO.builder()
                     .isError(true)

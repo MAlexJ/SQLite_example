@@ -68,6 +68,7 @@ app.component('console', {
                     </div>
                     <div class="col-lg-12">
                         <p>Click "Run SQL" to execute the SQL statement above.</p>
+                        <p ng-show="result.error" class="bg-warning text-white">{{result.message}}</p>
                         <p>{{result}}</p>
                     </div>
                 </div>
