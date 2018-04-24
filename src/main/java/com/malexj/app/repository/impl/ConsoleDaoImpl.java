@@ -67,7 +67,7 @@ public class ConsoleDaoImpl implements ConsoleDao
     {
         // #1 get MetaData from ResultSet
         ResultSetMetaData metaData = resultSet.getMetaData();
-        LinkedHashSet<ResultMetaData> resultMetaDataSet = IntStream.range(1, metaData.getColumnCount())
+        LinkedHashSet<ResultMetaData> resultMetaDataSet = IntStream.rangeClosed(1, metaData.getColumnCount())
                 .boxed()
                 .map(countNumber -> getColumnTypeName(countNumber, metaData))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
@@ -90,7 +90,7 @@ public class ConsoleDaoImpl implements ConsoleDao
         }
 
         return BuilderDTO.builder()
-                .resultMetaData(columnNameSet)
+                .resultColumns(columnNameSet)
                 .resultRows(resultSetRow)
                 .build();
     }

@@ -35,7 +35,7 @@ public class BuilderDTO
     private List<BuilderDTO> subCategories;
 
     // RowSet
-    private Set<String> resultMetaData;
+    private Set<String> resultColumns;
     private List<List<Object>> resultRows;
 
     public static class BuilderDTOBuilder
