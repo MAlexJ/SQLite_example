@@ -6,7 +6,6 @@ import com.malexj.app.repository.ConsoleDao;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +22,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static com.malexj.app.constant.Constant.SUCCESS_MESSAGE;
+
 @Slf4j
 @Repository
 public class ConsoleDaoImpl implements ConsoleDao
@@ -31,6 +32,7 @@ public class ConsoleDaoImpl implements ConsoleDao
      * DataSource
      */
     private final DataSource dataSource;
+
 
     @Autowired
     public ConsoleDaoImpl(@Qualifier("dataSourceConsole") DataSource dataSource)
@@ -56,11 +58,18 @@ public class ConsoleDaoImpl implements ConsoleDao
     }
 
     @Override
-    @SneakyThrows
     public BuilderDTO executeUpdate(String query)
     {
-        dataSource.getConnection().createStatement().execute(query);
-        return BuilderDTO.builder().build();
+        BuilderDTO.BuilderDTOBuilder builder = BuilderDTO.builder().message(SUCCESS_MESSAGE);
+        try
+        {
+            dataSource.getConnection().createStatement().execute(query);
+        } catch (SQLException ex)
+        {
+            log.error("Error execute query: ", query, "Message:", ex.getMessage());
+            builder.message(ex.getMessage()).isError(true);
+        }
+        return builder.build();
     }
 
     private BuilderDTO getResultFromSelectQuery(ResultSet resultSet) throws SQLException

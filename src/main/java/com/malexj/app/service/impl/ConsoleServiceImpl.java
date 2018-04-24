@@ -7,6 +7,9 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.malexj.app.constant.Constant.SELECT_QUERY;
+import static com.malexj.app.constant.Constant.SQL_QUERY_END;
+
 @Service
 public class ConsoleServiceImpl implements ConsoleService
 {
@@ -21,18 +24,19 @@ public class ConsoleServiceImpl implements ConsoleService
     @Override
     public BuilderDTO executeQuery(@NonNull String query)
     {
-        if (query.startsWith("SELECT"))
+        String trimQuery = query.trim();
+        if (query.trim().endsWith(";"))
+        {
+            return BuilderDTO.builder()
+                    .isError(true)
+                    .message(SQL_QUERY_END)
+                    .build();
+        }
+        String toUpperCaseQuery = trimQuery.toUpperCase();
+        if (toUpperCaseQuery.startsWith(SELECT_QUERY))
         {
             return consoleDao.executeSelect(query);
         }
-
-        if (query.startsWith("INSERT") || query.startsWith("UPDATE") || query.startsWith("DELETE") || query.startsWith("CREATE"))
-        {
-            return consoleDao.executeUpdate(query);
-        }
-
-        return BuilderDTO.builder()
-                .message("Successful: " + query)
-                .build();
+        return consoleDao.executeUpdate(query);
     }
 }
