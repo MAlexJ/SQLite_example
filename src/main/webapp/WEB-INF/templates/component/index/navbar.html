@@ -1,7 +1,7 @@
 <nav xmlns:th="http://www.thymeleaf.org"
      th:fragment="navbar"
-     class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right hidden-lg-up"
+     class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse"  ng-controller="navBarController">
+    <button id="btn-menu-toggle" class="navbar-toggler navbar-toggler-right hidden-lg-up"
             type="button"
             data-toggle="collapse"
             data-target="#navbarsExampleDefault"
@@ -13,22 +13,22 @@
     <div class="navbar-brand brandDiv">SQL Tutorial</div>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li ui-sref-active="active" class="nav-item">
+            <li ui-sref-active="active" class="nav-item" ng-click="hidingNavBar()">
                 <a ui-sref="ddl" class="nav-link">DDL</a>
             </li>
-            <li ui-sref-active="active" class="nav-item">
+            <li ui-sref-active="active" class="nav-item" ng-click="hidingNavBar()">
                 <a ui-sref="dml" class="nav-link">DML</a>
             </li>
-            <li ui-sref-active="active" class="nav-item">
+            <li ui-sref-active="active" class="nav-item" ng-click="hidingNavBar()">
                 <a ui-sref="dcl" class="nav-link">DCL</a>
             </li>
-            <li ui-sref-active="active" class="nav-item">
+            <li ui-sref-active="active" class="nav-item" ng-click="hidingNavBar()">
                 <a ui-sref="tcl" class="nav-link">TCL</a>
             </li>
-            <li ui-sref-active="active" class="nav-item">
+            <li ui-sref-active="active" class="nav-item" ng-click="hidingNavBar()">
                 <a ui-sref="console" class="nav-link">CONSOLE</a>
             </li>
-            <li ui-sref-active="active" class="nav-item">
+            <li ui-sref-active="active" class="nav-item" ng-click="hidingNavBar()">
                 <a ui-sref="info" class="nav-link">INFO</a>
             </li>
         </ul>
