@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -28,6 +25,8 @@ import static com.malexj.app.constant.Constant.SUCCESS_MESSAGE;
 @Repository
 public class ConsoleDaoImpl implements ConsoleDao
 {
+    private static final String ERROR_QUERY = "Error execute query: %s, Message: %s";
+
     /**
      * DataSource
      */
@@ -49,7 +48,7 @@ public class ConsoleDaoImpl implements ConsoleDao
             return getResultFromSelectQuery(resultSet);
         } catch (SQLException ex)
         {
-            log.error("Error executing query.", ex);
+            log.error(String.format(ERROR_QUERY, query, ex.getMessage()));
             return BuilderDTO.builder()
                     .isError(true)
                     .message(ex.getMessage())
@@ -61,12 +60,13 @@ public class ConsoleDaoImpl implements ConsoleDao
     public BuilderDTO executeUpdate(String query)
     {
         BuilderDTO.BuilderDTOBuilder builder = BuilderDTO.builder().message(SUCCESS_MESSAGE);
-        try
+        try(Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement())
         {
-            dataSource.getConnection().createStatement().execute(query);
+            statement.execute(query);
         } catch (SQLException ex)
         {
-            log.error("Error execute query: ", query, "Message:", ex.getMessage());
+            log.error(String.format(ERROR_QUERY, query, ex.getMessage()));
             builder.message(ex.getMessage()).isError(true);
         }
         return builder.build();
