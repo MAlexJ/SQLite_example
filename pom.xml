@@ -13,7 +13,6 @@
         <thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
         <spring-security-web.version>5.0.0.RELEASE</spring-security-web.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>4.12</junit.version>
         <guava.version>24.0-jre</guava.version>
         <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
         <flyway-core.version>5.2.1</flyway-core.version>
@@ -28,6 +27,7 @@
         <spring-security-csrf-token-interceptor.version>0.1.5</spring-security-csrf-token-interceptor.version>
         <sqlite-jdbc.version>3.20.0</sqlite-jdbc.version>
         <lombok.version>1.18.4</lombok.version>
+        <junit-jupiter>5.7.0</junit-jupiter>
     </properties>
 
     <dependencies>
@@ -206,11 +206,17 @@
             <version>${guava.version}</version>
         </dependency>
 
-        <!--junit-->
+        <!--tests-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -318,7 +324,7 @@
             <properties>
                 <app.env>prod</app.env>
                 <url.address/>
-                <url.port>80</url.port>
+                <url.port>8080</url.port>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>

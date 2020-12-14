@@ -14,29 +14,29 @@ import java.util.*;
 public class BuilderDTO
 {
     // response
-    private String message;
+    private final String message;
     boolean isError;
 
     // default
-    private String html;
+    private final String html;
 
     // Category
-    private Integer idCategory;
-    private String nameCategory;
-    private String descriptionCategory;
-    private String htmlCategory;
+    private final Integer idCategory;
+    private final String nameCategory;
+    private final String descriptionCategory;
+    private final String htmlCategory;
 
     // SubCategory
-    private Integer idSubCategory;
-    private String nameSubCategory;
-    private String descriptionSubCategory;
-    private String htmlSubCategory;
+    private final Integer idSubCategory;
+    private final String nameSubCategory;
+    private final String descriptionSubCategory;
+    private final String htmlSubCategory;
 
-    private List<BuilderDTO> subCategories;
+    private final List<BuilderDTO> subCategories;
 
     // RowSet
-    private Set<String> resultColumns;
-    private List<List<Object>> resultRows;
+    private final Set<String> resultColumns;
+    private final List<List<Object>> resultRows;
 
     public static class BuilderDTOBuilder
     {

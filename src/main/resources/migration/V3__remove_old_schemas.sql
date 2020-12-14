@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS subCategoryTable;
+DROP TABLE IF EXISTS categoryTable;
+DROP TABLE IF EXISTS addressTable;
+DROP TABLE IF EXISTS countryCodeTable;
+DROP TABLE IF EXISTS phoneTable;
+DROP TABLE IF EXISTS roleTable;
+DROP TABLE IF EXISTS userRoleTable;
+DROP TABLE IF EXISTS userTable;

@@ -1,21 +1,21 @@
 package com.malexj.app.dto;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class BuilderDTOTest {
+class BuilderDTOTest
+{
 
     @Test
-    public void test() {
+    void test()
+    {
         BuilderDTO dto = BuilderDTO.builder().idCategory(1).build();
         assertEquals(1, dto.getIdCategory().intValue());
-        assertEquals(null, dto.getIdSubCategory());
-        assertEquals(null, dto.getNameCategory());
-        assertEquals(null, dto.getDescriptionCategory());
-        assertEquals(null, dto.getHtmlCategory());
+        assertNull(dto.getIdSubCategory());
+        assertNull(null, dto.getNameCategory());
+        assertNull(null, dto.getDescriptionCategory());
+        assertNull(null, dto.getHtmlCategory());
 
         dto = BuilderDTO.builder().idCategory(9).htmlCategory("<input>").build();
         assertEquals("<input>", dto.getHtmlCategory());
@@ -23,8 +23,8 @@ public class BuilderDTOTest {
     }
 
     @Test
-    public void testPage() {
-
+    void testPage()
+    {
         BuilderDTO subCategoryFirst = BuilderDTO.builder()
                 .idSubCategory(1)
                 .nameSubCategory("Name_1")

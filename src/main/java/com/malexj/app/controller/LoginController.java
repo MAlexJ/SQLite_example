@@ -4,13 +4,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Registering the Login Action
  */
-@Api(value = "/login", description = "Show login page")
+@Api(value = "/login", tags = "Tags")
 @Slf4j
 @Controller
 public class LoginController
@@ -21,7 +20,7 @@ public class LoginController
      * @return `login` page
      */
     @ApiOperation(value = "Get `login.html` page", produces = "text/html")
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping(value = "/login")
     public String loginPage()
     {
         return "login.html";

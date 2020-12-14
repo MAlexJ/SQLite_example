@@ -20,7 +20,7 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         {
             name: 'ddlSubCategory',
             parent: 'ddl',
-            url: '{id}',
+            url: '/subcategories/{id}',
             component: 'ddlSubCategory',
             resolve: {
                 ddlSubCategory: function (RestAPI, $stateParams) {
@@ -42,7 +42,7 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         {
             name: 'dmlSubCategory',
             parent: 'dml',
-            url: '{id}',
+            url: '/subcategories/{id}',
             component: 'dmlSubCategory',
             resolve: {
                 dmlSubCategory: function (RestAPI, $stateParams) {
@@ -64,7 +64,7 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         {
             name: 'dclSubCategory',
             parent: 'dcl',
-            url: '{id}',
+            url: '/subcategories/{id}',
             component: 'dclSubCategory',
             resolve: {
                 dclSubCategory: function (RestAPI, $stateParams) {
@@ -86,7 +86,7 @@ app.config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
         {
             name: 'tclSubCategory',
             parent: 'tcl',
-            url: '{id}',
+            url: '/subcategories/{id}',
             component: 'tclSubCategory',
             resolve: {
                 tclSubCategory: function (RestAPI, $stateParams) {

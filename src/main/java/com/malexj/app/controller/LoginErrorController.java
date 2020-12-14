@@ -5,8 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Registering the Login Action
@@ -22,7 +21,7 @@ public class LoginErrorController
      * @return `login` page with error message
      */
     @ApiOperation(value = "Get `login.html` page with error message", produces = "text/html")
-    @RequestMapping(value = "/login-error", method = RequestMethod.GET)
+    @GetMapping(value = "/login-error")
     public String loginErrorPage(Model model)
     {
         model.addAttribute("loginError", true);

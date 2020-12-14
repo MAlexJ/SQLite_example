@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="getListCategoriesBySubCategoryName">
+        <![CDATA[
+			SELECT sub.idSubCategory, sub.nameSubCategory, cat.htmlCategory FROM subCategoryTable AS sub
+            LEFT JOIN categoryTable AS cat ON sub.idCategory = cat.idCategory WHERE cat.nameCategory = ?
+		]]>
+    </entry>
+    <entry key="getHtmlSubCategoryBySubCategoryId">
+        <![CDATA[
+			SELECT htmlSubCategory FROM subCategoryTable WHERE idSubCategory = ?
+		]]>
+    </entry>
+</properties>
