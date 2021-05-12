@@ -11,7 +11,7 @@
     <properties>
         <spring.version>5.0.2.RELEASE</spring.version>
         <thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
-        <spring-security-web.version>5.0.0.RELEASE</spring-security-web.version>
+        <spring-security-web.version>5.2.10.RELEASE</spring-security-web.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <guava.version>24.0-jre</guava.version>
         <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
