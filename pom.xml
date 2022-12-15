@@ -9,7 +9,7 @@
     <name>sqlite-app</name>
 
     <properties>
-        <spring.version>5.0.2.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
         <thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
         <spring-security-web.version>5.0.0.RELEASE</spring-security-web.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
